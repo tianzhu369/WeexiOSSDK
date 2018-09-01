@@ -27,6 +27,7 @@
 @synthesize weexInstance;
 
 WX_EXPORT_METHOD(@selector(notifyWebview:data:))
+WX_EXPORT_METHOD(@selector(postMessage:data:))
 WX_EXPORT_METHOD(@selector(reload:))
 WX_EXPORT_METHOD(@selector(goBack:))
 WX_EXPORT_METHOD(@selector(goForward:))
@@ -57,6 +58,12 @@ WX_EXPORT_METHOD(@selector(goForward:))
 - (void)notifyWebview:(NSString *)elemRef data:(NSDictionary *)data {
     [self performBlockWithWebView:elemRef block:^void (WXWebComponent *webview) {
         [webview notifyWebview:data];
+    }];
+}
+
+- (void)postMessage:(NSString *)elemRef data:(NSDictionary *)data {
+    [self performBlockWithWebView:elemRef block:^void (WXWebComponent *webview) {
+        [webview postMessage:data];
     }];
 }
 
